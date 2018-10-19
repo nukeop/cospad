@@ -11,6 +11,8 @@
 // entirely and just use numbers.
 #define _BL 0
 #define _FL 1
+#define BROWSER 2
+#define WM 3
 
 #define _______ KC_TRNS
 
@@ -18,6 +20,30 @@
 #define I3_RIGHT LGUI(KC_RIGHT)
 #define I3_UP    LGUI(KC_UP)
 #define I3_DOWN  LGUI(KC_DOWN)
+#define I3_0 LGUI(KC_0)
+#define I3_1 LGUI(KC_1)
+#define I3_2 LGUI(KC_2)
+#define I3_3 LGUI(KC_3)
+#define I3_4 LGUI(KC_4)
+#define I3_5 LGUI(KC_5)
+#define I3_6 LGUI(KC_6)
+#define I3_7 LGUI(KC_7)
+#define I3_8 LGUI(KC_8)
+#define I3_9 LGUI(KC_9)
+
+#define BRW_0 LALT(KC_0)
+#define BRW_1 LALT(KC_1)
+#define BRW_2 LALT(KC_2)
+#define BRW_3 LALT(KC_3)
+#define BRW_4 LALT(KC_4)
+#define BRW_5 LALT(KC_5)
+#define BRW_6 LALT(KC_6)
+#define BRW_7 LALT(KC_7)
+#define BRW_8 LALT(KC_8)
+#define BRW_9 LALT(KC_9)
+#define BRW_OPEN LCTL(KC_T)
+#define BRW_CLOSE LCTL(KC_W)
+#define BRW_REFRESH LCTL(KC_R)
 
 enum custom_keycodes {
     TMUX_0 = SAFE_RANGE,
@@ -52,12 +78,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 
 [_BL] = LAYOUT_ortho_6x4(
-  _______,    _______, MO(_FL), I3_RIGHT, \
-  TMUX_CLOSE, _______, I3_UP,   I3_DOWN,  \
-  TMUX_NEW,   _______, _______, I3_LEFT,  \
-  _______,    TMUX_9,  TMUX_6,  TMUX_3,   \
-  TMUX_0,     TMUX_8,  TMUX_5,  TMUX_2,   \
-  KC_ESC,     TMUX_7,  TMUX_4,  TMUX_1),
+  _______,    _______, MO(_FL),     I3_RIGHT, \
+  TMUX_CLOSE, _______, I3_UP,       I3_DOWN,  \
+  TMUX_NEW,   TG(WM),  TG(BROWSER), I3_LEFT,        \
+  _______,    TMUX_9,  TMUX_6,      TMUX_3,   \
+  TMUX_0,     TMUX_8,  TMUX_5,      TMUX_2,   \
+  KC_ESC,     TMUX_7,  TMUX_4,      TMUX_1),
+
+[BROWSER] = LAYOUT_ortho_6x4(
+  BRW_REFRESH, _______, _______, _______,\
+  BRW_CLOSE,   _______, _______, _______,\
+  BRW_OPEN,    _______, _______, _______,\
+  _______,     BRW_9,   BRW_6,   BRW_3,  \
+  _______,     BRW_8,   BRW_5,   BRW_2,  \
+  KC_EXEC,     BRW_7,   BRW_4,   BRW_1),
+
+[WM] = LAYOUT_ortho_6x4(
+  _______,     _______, _______, _______,\
+  _______,     _______, _______, _______,\
+  _______,     _______, _______, _______,\
+  _______,     I3_9,    I3_6,    I3_3,   \
+  _______,     I3_8,    I3_5,    I3_2,   \
+  KC_EXEC,     I3_7,    I3_4,    I3_1),
 
   /* Keymap _FL: Function Layer
    * ,-------------------.
@@ -81,6 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RGB_SAD,  RGB_SAI,  BL_OFF,    KC_PPLS, \
   RGB_VAD,  RGB_VAI,  KC_P3,              \
   KC_P0,              RESET,     KC_PENT),
+
+
+
 };
 
 
